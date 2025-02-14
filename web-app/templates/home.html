@@ -1,5 +1,5 @@
 {% extends "base.html" %} {% block title %}Home - Dinno crawler{% endblock %} {% block content %}
-<div class="h-[90vh] bg-gray-100 flex justify-center items-center">
+<div class="h-full bg-gray-100 flex justify-center items-center flex-col gap-5">
 	<form
 		class="px-4 w-full max-w-[330px]"
 		action="/search"
@@ -51,5 +51,7 @@
 			</button>
 		</div>
 	</form>
+
+	<h2>تمامی داده‌های موجود از سایت خبری <a href="https://khabaronline.ir" target="_blank" class="text-blue-500 font-bold">خبر آنلاین</a> خزش شده‌اند</h2>
 </div>
 {% endblock %}

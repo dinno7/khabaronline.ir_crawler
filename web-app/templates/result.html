@@ -1,103 +1,106 @@
 {% extends "base.html" %} {% block title %}Home - Dinno crawler{% endblock %} {% block content %}
-<div
-	dir="rtl"
-	class="bg-gray-100">
-	<div class="container mx-auto">
-		<div class="py-16">
-			<div class="flex justify-between items-center">
-				<h1 class="text-5xl font-black">نتایج جستجو برای <span>{{query}}</span></h1>
+<div class="container mx-auto">
+	<div class="py-12">
+		<div class="flex justify-between items-center">
+			<h1 class="text-5xl font-black">نتایج جستجو برای <span>{{query}}</span></h1>
+			<a
+				href="/"
+				class="text-blue-600 hover:text-blue-500">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="32"
+					height="32"
+					viewBox="0 0 24 24">
+					<g
+						fill="none"
+						stroke="currentColor"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2">
+						<path
+							stroke-dasharray="64"
+							stroke-dashoffset="64"
+							d="M21 12c0 4.97 -4.03 9 -9 9c-4.97 0 -9 -4.03 -9 -9c0 -4.97 4.03 -9 9 -9c4.97 0 9 4.03 9 9Z">
+							<animate
+								fill="freeze"
+								attributeName="stroke-dashoffset"
+								dur="0.6s"
+								values="64;0" />
+						</path>
+						<path
+							stroke-dasharray="6"
+							stroke-dashoffset="6"
+							d="M10 12l3 -3M10 12l3 3">
+							<animate
+								fill="freeze"
+								attributeName="stroke-dashoffset"
+								begin="0.7s"
+								dur="0.3s"
+								values="6;0" />
+						</path>
+					</g>
+				</svg>
+			</a>
+		</div>
+		<p class="py-3 font-light">
+			کوئری ورودی <span class="font-bold underline">{{query}}</span> بوده است که در نتیجه پیش‌پردازش به
+			<span class="font-bold underline">{{processed_query}}</span> تبدیل شده است
+		</p>
+	</div>
+	<div
+		class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-items-center gap-16 py-16 px-10 rounded-xl bg-white">
+		{% for result in results %}
+		<div
+			class="relative flex w-full md:w-90 flex-col justify-between rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+			<div
+				class="relative mx-4 -mt-6 h-50 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40 bg-gradient-to-r from-blue-500 to-blue-600">
+				<img
+					class="absolute inset-0 w-full h-full object-cover"
+					src="{{result.summery_image}}"
+					alt="{{result.title}}" />
+			</div>
+			<div class="p-6">
+				<h5 class="mb-2 block text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased flex justify-between items-start">
+					<span class="max-w-11/12">{{ result.title }}</span>
+					{%if result.rate_stars != '0' %}
+					<span class="bg-yellow-300 size-7 p-2 flex justify-center items-center z-100  text-xs rounded">{{result.rate_stars}}</span>
+					{%endif%}
+				</h5>
+				<p class="block text-base font-light text-gray-500 leading-relaxed antialiased">
+					{{ (result.summery + result.content_text[:200])[:200] }}...
+				</p>
+			</div>
+			<div class="p-6 pt-0 text-sm text-base font-light">
+				<div>
+					<span>منتشر شده در</span>
+					<span>{{result.publish_persian_date}}</span>
+				</div>
+				<div>
+					<span>آخرین خزش</span>
+					<span>{{result.updatedAt}}</span>
+				</div>
+			</div>
+			<div class="p-6 pt-0">
 				<a
-					href="/"
-					class="text-blue-600 hover:text-blue-500">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="32"
-						height="32"
-						viewBox="0 0 24 24">
-						<g
-							fill="none"
-							stroke="currentColor"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							stroke-width="2">
-							<path
-								stroke-dasharray="64"
-								stroke-dashoffset="64"
-								d="M21 12c0 4.97 -4.03 9 -9 9c-4.97 0 -9 -4.03 -9 -9c0 -4.97 4.03 -9 9 -9c4.97 0 9 4.03 9 9Z">
-								<animate
-									fill="freeze"
-									attributeName="stroke-dashoffset"
-									dur="0.6s"
-									values="64;0" />
-							</path>
-							<path
-								stroke-dasharray="6"
-								stroke-dashoffset="6"
-								d="M10 12l3 -3M10 12l3 3">
-								<animate
-									fill="freeze"
-									attributeName="stroke-dashoffset"
-									begin="0.7s"
-									dur="0.3s"
-									values="6;0" />
-							</path>
-						</g>
-					</svg>
+					href="{{ result.news_short_url }}"
+					target="_blank"
+					class="select-none rounded-lg bg-blue-500 py-3 px-6 text-center align-middle text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none mr-auto">
+					مشاهده در سایت اصلی
 				</a>
 			</div>
-			<p class="py-3 font-light">
-				کوئری ورودی <span class="font-bold underline">{{query}}</span> بوده است که در نتیجه پیش‌پردازش به
-				<span class="font-bold underline">{{processed_query}}</span> تبدیل شده است
-			</p>
-		</div>
-		<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-16 py-24 px-5 rounded-xl bg-white">
-			{% for result in results %}
-			<div
-				class="relative flex w-90 flex-col justify-between rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
-				<div
-					class="relative mx-4 -mt-6 h-40 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40 bg-gradient-to-r from-blue-500 to-blue-600">
-					<img
-						src="{{result.summery_image}}"
-						alt="" />
+			<span class="mb-3 bg-gray-300 block h-[1px]"></span>
+			{% if result.tags[0]: %}
+			<div class="px-6 pb-4">
+				<h3 class="font-bold">برچسب‌ها</h3>
+				<div class="flex flex-row gap-3 flex-wrap py-3">
+					{% for tag in result.tags %}
+					<span class="bg-sky-200 text-sm py-1 px-2 text-center rounded">{{tag}} </span>
+					{% endfor %}
 				</div>
-				<div class="p-6">
-					<h5 class="mb-2 block text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
-						{{ result.title }}
-					</h5>
-					<p class="block text-base font-light text-gray-500 leading-relaxed antialiased">{{ result.summery }}...</p>
-				</div>
-				<div class="p-6 pt-0 text-sm text-base font-light">
-					<div>
-						<span>منتشر شده در</span>
-						<span>{{result.publish_persian_date}}</span>
-					</div>
-					<div>
-						<span>آخرین خزش</span>
-						<span>{{result.updatedAt}}</span>
-					</div>
-				</div>
-				<div class="p-6 pt-0">
-					<a
-						href="{{ result.news_short_url }}"
-						target="_blank"
-						class="select-none rounded-lg bg-blue-500 py-3 px-6 text-center align-middle text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none mr-auto">
-						مشاهده در سایت اصلی
-					</a>
-				</div>
-				{% if result.tags[0]: %}
-				<span class="mb-3 bg-gray-300 block h-[1px]"></span>
-				<div class="px-6 pb-4">
-					<h3 class="font-bold">برچسب‌ها</h3>
-					<div class="flex flex-row gap-3 flex-wrap py-3">
-						{% for tag in result.tags %}
-						<span class="bg-sky-200 text-sm py-1 px-2 text-center rounded">{{tag}} </span>
-						{% endfor %}
-					</div>
-				</div>
-				{%endif%}
 			</div>
-			{% endfor %}
+			{%endif%}
 		</div>
+		{% endfor %}
 	</div>
 </div>
 {% endblock %}
