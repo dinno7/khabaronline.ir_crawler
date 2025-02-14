@@ -1,0 +1,60 @@
+@font-face {
+	font-family: 'Peyda';
+	src: url('fonts/peydaWeb-extralight.woff2') format('woff2');
+	font-weight: 200; /* Extra Light */
+}
+
+@font-face {
+	font-family: 'Peyda';
+	src: url('fonts/peydaWeb-light.woff2') format('woff2');
+	font-weight: 300; /* Light */
+}
+
+@font-face {
+	font-family: 'Peyda';
+	src: url('fonts/PeydaWeb-Thin.woff2') format('woff2');
+	font-weight: 100; /* Thin */
+}
+
+@font-face {
+	font-family: 'Peyda';
+	src: url('fonts/PeydaWeb-Regular.woff2') format('woff2');
+	font-weight: 400; /* Regular */
+}
+
+@font-face {
+	font-family: 'Peyda';
+	src: url('fonts/PeydaWeb-Medium.woff2') format('woff2');
+	font-weight: 500; /* Medium */
+}
+
+@font-face {
+	font-family: 'Peyda';
+	src: url('fonts/PeydaWeb-SemiBold.woff2') format('woff2');
+	font-weight: 600; /* Semi Bold */
+}
+
+@font-face {
+	font-family: 'Peyda';
+	src: url('fonts/PeydaWeb-Bold.woff2') format('woff2');
+	font-weight: 700; /* Bold */
+}
+
+@font-face {
+	font-family: 'Peyda';
+	src: url('fonts/PeydaWeb-ExtraBold.woff2') format('woff2');
+	font-weight: 800; /* Extra Bold */
+}
+
+@font-face {
+	font-family: 'Peyda';
+	src: url('fonts/PeydaWeb-Black.woff2') format('woff2');
+	font-weight: 900; /* Black */
+}
+
+body {
+	direction: rtl;
+	font-family: 'Peyda', serif;
+	font-optical-sizing: auto;
+	font-style: normal;
+}

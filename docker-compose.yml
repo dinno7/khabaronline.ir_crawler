@@ -1,0 +1,20 @@
+services:
+  db:
+    container_name: mongodb_container
+    image: mongo
+    restart: always
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo_data:/data/db
+  db_gui:
+    container_name: mongodb_gui_container
+    image: mongoclient/mongoclient
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - '3000:3000'
+
+volumes:
+  mongo_data:
