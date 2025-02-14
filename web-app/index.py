@@ -1,5 +1,4 @@
 import os
-import subprocess
 import sys
 
 current_file_path = os.path.abspath(__file__)
